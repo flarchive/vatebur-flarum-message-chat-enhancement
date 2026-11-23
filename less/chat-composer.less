@@ -1,0 +1,124 @@
+& when (@mce-chat-composer = 1) {
+  html:root .DialogSection--mceInlineReply {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  html:root .DialogSection--mceInlineReply > .DialogSection-header {
+    flex: 0 0 auto;
+  }
+
+  html:root .DialogSection--mceInlineReply > .MessageStream {
+    flex: 1 1 auto;
+    min-height: 0;
+    mask-image: none;
+  }
+
+  html:root .MceReplyDock {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  html:root .MceInlineReply {
+    --pm-bar-padding: 12px;
+    --pm-field-padding: 9px;
+    --pm-field-line-height: 24px;
+    --pm-field-lines: 5;
+    --pm-field-frame: calc(2 * var(--pm-field-padding) + 2px);
+    --pm-field-min: calc(var(--pm-field-line-height) + var(--pm-field-frame));
+    --pm-field-max: calc(var(--pm-field-lines) * var(--pm-field-line-height) + var(--pm-field-frame));
+    --pm-action-height: 36px;
+    --pm-action-gap: 6px;
+
+    padding: var(--pm-bar-padding);
+    border-top: 1px solid var(--mh-line, var(--control-bg));
+    background: var(--mh-card, var(--body-bg));
+  }
+
+  html:root .MceInlineReply :is(.ComposerBody-avatar, .ComposerBody-header, .ProseMirrorMenu) {
+    display: none;
+  }
+
+  html:root .MceInlineReply :is(.ComposerBody, .ComposerBody-content, .ComposerBody-editor) {
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  html:root .MceInlineReply .TextEditor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--pm-action-gap);
+    min-height: calc(var(--pm-field-min) + var(--pm-action-height) + var(--pm-action-gap));
+  }
+
+  html:root .MceInlineReply .TextEditor-editor {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto !important;
+    min-height: var(--pm-field-min);
+    max-height: var(--pm-field-max);
+    margin: 0;
+    padding: var(--pm-field-padding) 12px;
+    border: 1px solid var(--mh-line, var(--control-bg));
+    border-radius: 12px;
+    background: var(--control-bg);
+    color: var(--mh-ink, var(--text-color));
+    font-size: 16px;
+    line-height: var(--pm-field-line-height);
+    field-sizing: content;
+    overflow: hidden auto;
+    overflow-wrap: anywhere;
+    overscroll-behavior: contain;
+    resize: none;
+  }
+
+  html:root .MceInlineReply .TextEditor-editor > p {
+    margin-block: 0;
+  }
+
+  html:root .MceInlineReply .TextEditor-editor > p.is-editor-empty::before,
+  html:root .MceInlineReply .TextEditor-editor::placeholder {
+    color: var(--mh-muted, var(--muted-color));
+  }
+
+  html:root .MceInlineReply :is(.TextEditor-controls, .TextEditor-toolbar) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+  }
+
+  html:root .MceInlineReply .TextEditor-controls > li {
+    margin: 0;
+  }
+
+  html:root .MceInlineReply .TextEditor-controls > .item-submit {
+    position: static !important;
+    order: 1;
+    margin-inline-start: auto;
+  }
+
+  html:root .MceInlineReply .TextEditor-controls .Button {
+    min-height: var(--pm-action-height);
+  }
+
+  html:root .MceInlineReply .TextEditor-controls > .item-submit .Button {
+    position: static;
+    height: var(--pm-action-height);
+    min-width: var(--pm-action-height);
+    padding: 0 12px;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 767px) {
+    html:root .MceInlineReply {
+      --pm-bar-padding: 8px;
+      --pm-action-height: 44px;
+      padding-bottom: ~"max(var(--pm-bar-padding), env(safe-area-inset-bottom))";
+    }
+  }
+}
